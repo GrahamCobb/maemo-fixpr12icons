@@ -1,0 +1,11 @@
+The Debian Package fixpr12icons
+-------------------------------
+
+This package contains only a postinst script: installing the
+package creates the missing symlinks.
+
+Note: the symlinks are not contained in the package because dpkg
+would then complain when the fixed osso-icons-default package is
+installed.
+
+ -- Graham Cobb <g+770@cobb.uk.net>  Sun, 25 Jul 2010 16:51:11 +0100
