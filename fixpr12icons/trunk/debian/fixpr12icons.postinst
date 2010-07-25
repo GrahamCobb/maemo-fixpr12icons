@@ -1,0 +1,55 @@
+#!/bin/sh
+
+fixOneIcon () {
+# fixOneIcon <gtk-name> [<system-name>]
+#
+# If <system-name> is not specified it defaults to "general_<gtk-name>"
+#
+# gtk icon filespec is /usr/share/icons/hicolor/48x48/hildon/gtk-<gtk-name>.png
+# Target of link is <system-name>.png
+#
+
+gtk_name=$1
+system_name=$2
+if [ -z "$system_name" ] ; then system_name="general_$gtk_name" ; fi
+
+gtk_file=/usr/share/icons/hicolor/48x48/hildon/gtk-${gtk_name}.png
+
+# Does the gtk file exist?
+if [ ! -f $gtk_file ]
+then
+  # Create the symlink
+  ln -sf ${system_name}.png $gtk_file
+  echo "Linked $gtk_file to ${system_name}.png"
+fi
+
+# Check it worked
+if [ ! -f $gtk_file ]
+then
+  echo "Could not create symlink for $gtk_file to ${system_name}.png"
+fi
+}
+
+fixOneIcon add
+fixOneIcon bold
+fixOneIcon close general_close_b
+fixOneIcon delete
+fixOneIcon directory general_toolbar_folder
+fixOneIcon find general_search
+fixOneIcon fullscreen general_fullsize_b
+fixOneIcon go-back general_back
+fixOneIcon go-first pdf_viewer_first_page
+fixOneIcon go-forward general_forward
+fixOneIcon go-last pdf_viewer_last_page
+fixOneIcon go-up filemanager_folder_up
+fixOneIcon info general_information
+fixOneIcon italic
+fixOneIcon jump-to general_move_to_folder
+fixOneIcon preferences general_settings
+fixOneIcon refresh
+fixOneIcon save notes_save
+fixOneIcon stop
+fixOneIcon underline notes_underline
+fixOneIcon undo
+fixOneIcon zoom-in pdf_zoomin
+fixOneIcon zoom-out pdf_zoomout
